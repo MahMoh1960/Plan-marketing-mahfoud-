@@ -14,6 +14,7 @@ Les données sont conservées sur l'appareil (stockage local du navigateur).
 | `manifest.json` | Installation sur l'écran d'accueil |
 | `sw.js` | Fonctionnement hors ligne |
 | `icon-192.png`, `icon-512.png` | Icônes de l'application |
+| `build-apk.yml` | Procédure de compilation de l'APK (à coller dans GitHub Actions, voir plus bas) |
 | `README.md` | Ce guide |
 
 ## Mise en ligne sur GitHub Pages
@@ -31,6 +32,24 @@ Il n'y a rien à configurer dans l'onglet « Actions ».
 
 Ouvrez l'adresse dans Chrome, puis menu ⋮ > « Installer l'application » (ou « Ajouter à l'écran d'accueil »).
 Après la première visite, l'application fonctionne aussi hors connexion.
+
+## Version APK (compilation par GitHub Actions)
+
+Aucun dossier n'est à créer : GitHub crée lui-même le dossier du workflow.
+
+1. Remplacez `app.js` dans le dépôt par la nouvelle version (elle gère l'export de sauvegarde dans l'APK).
+2. Onglet « Actions » > « New workflow » > « set up a workflow yourself ».
+3. Effacez le contenu proposé, collez tout le contenu de `build-apk.yml`, puis « Commit changes ».
+4. La compilation démarre seule (cinq à dix minutes). Sinon : Actions > « Compiler l'APK » > « Run workflow ».
+5. Une fois la coche verte affichée, ouvrez l'exécution et, tout en bas, section « Artifacts »,
+   téléchargez `plan-marketing-apk` (fichier ZIP). Décompressez-le (application Fichiers) : il contient `app-debug.apk`.
+6. Ouvrez `app-debug.apk` et autorisez l'installation depuis cette source si Android le demande.
+
+Remarques :
+- L'APK est signé avec une clé de test, régénérée à chaque compilation. Pour installer une version plus récente,
+  il faut d'abord désinstaller l'ancienne : **exportez votre sauvegarde avant** (Outils > Exporter), puis réimportez-la.
+- Dans l'APK, « Exporter » ouvre le partage Android (Drive, e-mail, Fichiers).
+- Chaque modification de fichier déposée sur la branche `main` relance une compilation.
 
 ## Fonctions
 

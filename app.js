@@ -43,6 +43,9 @@ function sauver() {
   catch (e) { toast('Enregistrement impossible sur cet appareil'); }
 }
 const nid = () => ++db.seq;
+// Vrai lorsque l'application s'exécute dans l'APK (Capacitor) et non dans un navigateur
+const estNatif = () => !!(window.Capacitor && typeof window.Capacitor.isNativePlatform === 'function'
+  && window.Capacitor.isNativePlatform());
 
 // ---------------------------------------------------------------- Utilitaires
 const $ = (s) => document.querySelector(s);
@@ -392,11 +395,29 @@ const ACTIONS = {
     sauver(); afficher();
   },
 
-  exporter: () => {
-    const blob = new Blob([JSON.stringify(db, null, 2)], { type: 'application/json' });
+  exporter: async () => {
+    const nom = 'plan-marketing-sauvegarde-' + new Date().toISOString().slice(0, 10) + '.json';
+    const contenu = JSON.stringify(db, null, 2);
+    // Application Android (APK) : écriture dans le cache puis partage natif (Drive, e-mail, fichiers…)
+    if (estNatif()) {
+      const P = window.Capacitor.Plugins || {};
+      if (P.Filesystem && P.Share) {
+        try {
+          const r = await P.Filesystem.writeFile({ path: nom, data: contenu, directory: 'CACHE', encoding: 'utf8' });
+          await P.Share.share({ title: nom, url: r.uri });
+          toast('Sauvegarde prête');
+        } catch (err) {
+          const m = String((err && err.message) || err || '');
+          if (!/cancel/i.test(m)) toast('Export impossible : ' + m);
+        }
+        return;
+      }
+    }
+    // Navigateur : téléchargement classique
+    const blob = new Blob([contenu], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'plan-marketing-sauvegarde-' + new Date().toISOString().slice(0, 10) + '.json';
+    a.download = nom;
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     toast('Sauvegarde exportée');
@@ -491,6 +512,6 @@ document.addEventListener('change', (e) => {
 window.addEventListener('hashchange', () => { onglet = 'synthese'; afficher(); });
 afficher();
 
-if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0 && !estNatif()) {
   navigator.serviceWorker.register('sw.js').catch(() => { /* hors ligne non disponible */ });
 }
