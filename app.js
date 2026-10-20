@@ -158,6 +158,119 @@ const INTROS = {
   contingence: "Le plan de contingence prévoit à l'avance des scénarios alternatifs pour réagir rapidement si les hypothèses de marché s'écartent fortement des prévisions. Une fiche par scénario ; répondez aux questions ci-dessous.",
   swot: "Forces et faiblesses proviennent de l'analyse interne ; opportunités et menaces, du PESTEL, du marché et des 5 forces. Un élément par ligne, en vous aidant des questions et du rappel ci-dessous.",
 };
+
+// Aide à la réponse : structure conseillée (s) et exemple fictif (e) par champ ; q = pistes de questions (formulaires sans pistes).
+// Les exemples portent sur un produit imaginaire (gamme de savons naturels) : chiffres fictifs, à remplacer par vos données sourcées.
+const MODELES = {
+  pestel: {
+    politique: { s: 'Facteur → effet sur le produit → opportunité ou menace.', e: "Programme public d'aide aux PME exportatrices → financement possible d'un salon → opportunité." },
+    economique: { s: 'Indicateur (avec source et année) → effet sur le pouvoir d\'achat ou les coûts.', e: "Hausse des prix des matières grasses → coût unitaire en hausse → pression sur la marge." },
+    socioculturel: { s: 'Évolution observée → comportement de la cible → conséquence pour l\'offre.', e: "Intérêt croissant pour les produits naturels → la cible compare les compositions → mettre la liste des ingrédients en avant." },
+    technologique: { s: 'Technologie → usage par la cible ou les concurrents → implication.', e: "Achat sur mobile en progression → vitrine en ligne nécessaire → prévoir une boutique simple d'utilisation." },
+    ecologique: { s: 'Contrainte ou attente → effet sur le produit → action possible.', e: "Attente d'emballages recyclables → emballage actuel en plastique → passer au carton." },
+    legal: { s: 'Texte ou norme (avec référence) → obligation → échéance.', e: "Règles d'étiquetage des produits cosmétiques → mentions obligatoires sur l'emballage → avant la mise sur le marché." },
+  },
+  marche: {
+    taille: { s: 'Volume, valeur, croissance, année et source.', e: "Marché de X millions d'unités par an, en croissance de Y % (source : étude sectorielle, année). Part visée : Z %." },
+    tendances: { s: 'Trois tendances maximum, chacune avec son implication.', e: "1) Demande de produits naturels → mettre l'accent sur la composition. 2) Achat en ligne en hausse → vendre aussi en ligne." },
+    comportement: { s: 'Qui achète, où, à quelle fréquence, selon quels critères, avec quels freins.', e: "Femmes de 25-45 ans, en supermarché et en ligne, achat mensuel ; critères : composition et prix ; frein : méconnaissance de la marque." },
+    concurrence: { s: 'Un concurrent par ligne : nom, prix, positionnement, force, faiblesse.', e: "Marque A : prix moyen, grande distribution, forte notoriété, composition peu valorisée." },
+  },
+  forces: {
+    entrants: { s: 'Niveau (faible, moyen, fort) + deux raisons.', e: "Moyen : peu de capital requis, mais accès aux rayons difficile." },
+    substituts: { s: 'Niveau + substituts identifiés + facilité de changement.', e: "Moyen : gels douche et savons industriels moins chers ; le client change facilement." },
+    clients: { s: 'Niveau + concentration des clients + sensibilité au prix.', e: "Fort : clients dispersés mais très sensibles au prix, choix large en rayon." },
+    fournisseurs: { s: 'Niveau + nombre de fournisseurs + coût de changement.', e: "Faible : plusieurs fournisseurs d'huiles disponibles, changement possible." },
+    rivalite: { s: 'Niveau + nombre de concurrents + facteurs (croissance, différenciation).', e: "Forte : nombreux acteurs, produits peu différenciés, promotions fréquentes." },
+  },
+  interne: {
+    performances: { s: 'Indicateur, période, évolution, cause principale.', e: "Ventes de l'an dernier : X unités (+Y % sur un an), grâce au lancement d'une nouvelle gamme." },
+    portefeuille: { s: 'Produit → classement (vedette, vache à lait, dilemme, poids mort) → décision.', e: "Savon à l'huile d'olive : vedette → investir. Savon à la lavande : dilemme → tester avant d'investir." },
+    notoriete: { s: 'Mesure de notoriété (spontanée ou assistée), image perçue, source de la mesure.', e: "Notoriété assistée de X % auprès de la cible (enquête interne) ; image : naturel, artisanal." },
+    capacites: { s: 'Capacité de production, qualité, équipe, financement, logistique : une ligne chacun.', e: "Production maximale de X unités par mois ; équipe de 5 personnes ; trésorerie suffisante pour 3 mois." },
+  },
+  swot: {
+    forces: { s: 'Un élément par ligne, formulé comme un fait précis et interne.', e: "Composition 100 % naturelle ; fabrication artisanale ; marge unitaire élevée." },
+    faiblesses: { s: 'Un élément par ligne, interne, avec si possible une mesure.', e: "Notoriété faible ; capacité de production limitée ; aucune présence en ligne." },
+    opportunites: { s: 'Un élément par ligne, externe, tiré du PESTEL ou du marché.', e: "Demande croissante de produits naturels ; aides publiques à l'export." },
+    menaces: { s: 'Un élément par ligne, externe, tiré des 5 forces ou du PESTEL.', e: "Concurrents établis à prix plus bas ; hausse du coût des matières premières." },
+  },
+  fcs: {
+    fcs: { s: 'Trois à cinq facteurs, un par ligne, qui font gagner les clients dans ce secteur.', e: "Qualité perçue de la composition ; prix accessible ; disponibilité en rayon et en ligne." },
+  },
+  strategie: {
+    ciblage: { s: 'Choisir la stratégie, puis la justifier par la taille et l\'hétérogénéité des segments retenus.', e: "Concentrée sur un seul segment, car les ressources sont limitées." },
+    positionnement: { s: 'Pour [cible], [produit] est [catégorie] qui [bénéfice distinctif], contrairement à [concurrence].', e: "Pour les femmes soucieuses de naturel, nos savons sont la solution de soin artisanale à composition transparente, contrairement aux savons industriels." },
+    proposition_valeur: { s: 'Une phrase : bénéfice principal + preuve + différence.', e: "Un soin quotidien naturel dont chaque ingrédient est expliqué, fabriqué artisanalement." },
+  },
+  mix4: {
+    produit: { s: 'Gamme, qualité, marque, emballage, garantie : une ligne chacun.', e: "Trois parfums ; composition naturelle ; emballage en carton ; marque artisanale." },
+    prix: { s: 'Stratégie retenue (écrémage, pénétration, alignement) + niveau de prix + justification.', e: "Alignement sur le haut de gamme moyen, justifié par la composition ; remise de lancement limitée dans le temps." },
+    distribution: { s: 'Canaux, zones couvertes, logistique, rôle de chaque canal.', e: "Boutique en ligne et trois points de vente partenaires ; livraison sous 72 h." },
+    communication: { s: 'Objectif + cible + message + canaux + budget approximatif.', e: "Faire connaître la marque auprès des 25-45 ans par les réseaux sociaux et l'échantillonnage ; message : naturel et transparent." },
+  },
+  mix3: {
+    personnel: { s: 'Qui est en contact avec le client, avec quelle formation et quelle posture.', e: "Conseillers formés à expliquer la composition et à répondre aux questions." },
+    processus: { s: 'Étapes du parcours client, du premier contact au service après-vente, avec délais.', e: "Commande en ligne, confirmation immédiate, livraison sous 72 h, retour possible sous 14 jours." },
+    preuve: { s: 'Éléments tangibles qui rassurent : lieu, supports, avis, certifications.', e: "Emballage soigné, étiquette détaillée, avis clients publiés." },
+  },
+  ventes: {
+    ventes_prevues: { s: 'Nombre d\'unités sur la période + base de calcul.', e: "3 000 unités sur 12 mois = 1 000 clients visés × 3 achats par an (hypothèse à justifier)." },
+  },
+  ltv: {
+    marge: { s: 'Montant par client et par an, dans la devise du plan.', e: "Panier annuel de 300 × taux de marge de 40 % = 120 de marge par client et par an." },
+    duree: { s: 'Nombre d\'années (peut être décimal).', e: "Si 25 % des clients quittent chaque année, durée = 1 / 0,25 = 4 ans." },
+  },
+  pv: {
+    part_de_voix: { s: 'Pourcentage entre 0 et 100.', e: "Dépenses de communication de 5 000 sur un total estimé du marché de 50 000 = 10 %." },
+  },
+  smart: {
+    type: { s: 'Choisir selon que l\'objectif se chiffre (quantitatif) ou porte sur une perception (qualitatif).', e: "« Vendre 3 000 unités » est quantitatif ; « améliorer l'image de marque » est qualitatif." },
+    intitule: { s: 'Verbe d\'action + résultat + produit + cible + marché.', e: "Vendre 3 000 savons naturels aux femmes de 25-45 ans de la région en 12 mois." },
+    indicateur: { s: 'Une seule mesure, avec son unité.', e: "Nombre d'unités vendues par mois." },
+    valeur_cible: { s: 'Nombre chiffré, avec sa valeur de départ si elle existe.', e: "3 000 unités (départ : 0)." },
+    justification: { s: 'Ressources + donnée de référence + cohérence avec le diagnostic.', e: "Capacité de production de 400 unités par mois, supérieure au rythme requis ; cible mesurée par l'étude de marché." },
+    echeance: { s: 'Date précise.', e: "31 décembre de l'année du lancement." },
+  },
+  segment: {
+    nom: { s: 'Deux à quatre mots qui décrivent le groupe.', e: "Jeunes actives urbaines." },
+    description: { s: 'Besoins, comportements d\'achat, freins, en deux ou trois phrases.', e: "Recherchent des soins naturels, achètent en ligne et en pharmacie, hésitent devant les marques inconnues." },
+    critere: { s: 'Le critère qui distingue le mieux ce groupe.', e: "Comportemental : recherche de produits naturels." },
+    taille: { s: 'Nombre de clients potentiels, avec la source.', e: "50 000 personnes (estimation à partir de données statistiques régionales)." },
+  },
+  persona: {
+    nom: { s: 'Prénom fictif + âge + situation.', e: "Samira, 32 ans, cadre." },
+    description: { s: 'Âge, profession, revenu, lieu de vie, médias utilisés.', e: "Cadre dans une entreprise, vit en ville, s'informe sur les réseaux sociaux et achète en ligne." },
+    besoins: { s: 'Problème à résoudre, bénéfice recherché, freins, critères de choix.', e: "Veut un soin sans produits chimiques ; craint les promesses non vérifiables ; choisit selon la composition et les avis." },
+  },
+  contingence: {
+    scenario: { s: 'Si [événement], alors [conséquence sur le plan].', e: "Si un concurrent baisse fortement ses prix, nos ventes risquent de reculer." },
+    declencheur: { s: 'Indicateur + seuil + durée + responsable.', e: "Ventes inférieures à 80 % de la prévision pendant 2 mois consécutifs ; suivi par le responsable marketing." },
+    action: { s: 'Action + responsable + délai + budget éventuel.', e: "Offre de fidélisation et réallocation du budget vers les canaux les plus rentables sous 15 jours." },
+  },
+  action: {
+    phase: { s: 'Choisir la phase du lancement concernée.', e: "Lancement." },
+    canal: { s: 'Un seul canal par action.', e: "Réseaux sociaux.", q: ["Par quel canal l'action touche-t-elle la cible ?"] },
+    description: { s: 'Verbe d\'action + livrable + responsable.', e: "Publier trois vidéos de présentation du produit (responsable : chargé de communication).", q: ["Que fait-on concrètement, et qui en est responsable ?", "Quel livrable permet de dire que l'action est terminée ?"] },
+    debut: { s: 'Date de démarrage.', e: "Début du mois de lancement." },
+    fin: { s: 'Date de fin, postérieure au début.', e: "Fin du même mois." },
+    cout: { s: 'Montant dans la devise du plan, sans symbole.', e: "2000.", q: ["Quel est le coût total prévu (production, achat d'espace, déplacements, honoraires) ?"] },
+  },
+  budget: {
+    canal: { s: 'Même intitulé que dans le plan d\'action.', e: "Réseaux sociaux.", q: ["Quel canal reçoit ce budget, et correspond-il à une action du plan ?"] },
+    montant: { s: 'Montant dans la devise du plan, sans symbole.', e: "5000.", q: ["Quelle part de l'enveloppe totale ce canal mérite-t-il, compte tenu de son rôle dans le plan ?"] },
+  },
+  resultat: {
+    canal: { s: 'Choisir le canal concerné.', e: "Réseaux sociaux." },
+    depense: { s: 'Dépense réellement engagée sur la période.', e: "1800.", q: ["Quelle somme a réellement été dépensée sur ce canal pour la période ?"] },
+    prospects: { s: 'Personnes touchées ayant manifesté un intérêt.', e: "400.", q: ["Combien de personnes ont manifesté un intérêt (demandes, visites qualifiées, contacts) ?"] },
+    clients: { s: 'Clients ayant effectivement acheté.', e: "60.", q: ["Combien de clients ont acheté grâce à ce canal ?"] },
+    ca: { s: "Chiffre d'affaires réalisé par ce canal.", e: "7200.", q: ["Quel chiffre d'affaires ce canal a-t-il généré sur la période ?"] },
+    periode: { s: 'Année et mois.', e: "2027-01." },
+  },
+};
+const MODELES_TITRE = { 'Nouveau segment': 'segment', 'Nouveau persona': 'persona', 'Scénario de contingence': 'contingence',
+  'Nouvelle action': 'action', 'Ligne de budget': 'budget', 'Résultat réel': 'resultat', 'Nouvel objectif SMART': 'smart', "Modifier l'objectif": 'smart' };
 const PISTES = {
   ventes: {
     ventes_prevues: ["Sur quelle base estime-t-on ces ventes (taille du segment visé × part atteignable, données d'un produit comparable, test de marché) ?",
@@ -436,11 +549,14 @@ async function copierTexte(t) {
 // Boîte de dialogue de saisie. champs : {name,label,type,req,ph,options:[{v,t}]}
 function formulaire(titre, champs, vals, ok, intro) {
   const d = document.createElement('dialog');
+  const cle = MODELES_TITRE[titre];
   const champ = (c) => {
     const val = vals[c.name] == null ? '' : vals[c.name];
+    const m = c.modele || (cle && MODELES[cle] ? MODELES[cle][c.name] : null);
     const ph = c.ph ? ` placeholder="${esc(c.ph)}"` : '';
-    const pistes = c.pistes && c.pistes.length
-      ? `<ul class="pistes">${c.pistes.map((q) => `<li>${esc(q)}</li>`).join('')}</ul>` : '';
+    const qs = c.pistes && c.pistes.length ? c.pistes : (m && m.q) || [];
+    const pistes = (qs.length ? `<ul class="pistes">${qs.map((q) => `<li>${esc(q)}</li>`).join('')}</ul>` : '')
+      + (m && (m.s || m.e) ? `<div class="modele">${m.s ? `<span><b>Pour une réponse claire :</b> ${esc(m.s)}</span>` : ''}${m.e ? `<span><b>Exemple fictif :</b> ${esc(m.e)}</span>` : ''}</div>` : '');
     if (c.type === 'select') {
       return `<label>${esc(c.label)}${pistes}<select name="${c.name}">${c.options.map((o) =>
         `<option value="${esc(o.v)}"${String(val) === String(o.v) ? ' selected' : ''}>${esc(o.t)}</option>`).join('')}</select></label>`;
@@ -973,7 +1089,7 @@ const ACTIONS = {
     if (!p || !g) return;
     const obj = g.obj(p);
     const pistes = PISTES[d.g] || {};
-    const champs = g.champs.map((c) => Object.assign({}, c, { pistes: pistes[c.name] }));
+    const champs = g.champs.map((c) => Object.assign({}, c, { pistes: pistes[c.name], modele: (MODELES[d.g] || {})[c.name] }));
     const intro = (INTROS[d.g] ? `<div class="doux">${esc(INTROS[d.g])}</div>` : '')
       + (d.g === 'swot' ? recapAudit(p) : '');
     formulaire(g.titre, champs, obj, (f) => {

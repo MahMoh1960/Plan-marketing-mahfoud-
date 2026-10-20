@@ -22,7 +22,7 @@ marketing mix, plan d'action et budget, pilotage et contrôle.
 
 ## Mise à jour vers la version « six rubriques » (avec pistes de questions)
 
-Seuls les fichiers `app.js`, `style.css` et `sw.js` changent par rapport à la première version.
+Les fichiers `app.js`, `style.css` et `sw.js` changent par rapport à la première version.
 `index.html` reste identique. Si vous disposez déjà de la version précédente avec pistes pour l'audit,
 seul `app.js` est à remplacer.
 
@@ -67,6 +67,13 @@ Remarques :
 - L'APK est signé avec une clé de test, régénérée à chaque compilation. Pour installer une version plus récente,
   il faut d'abord désinstaller l'ancienne : **exportez votre sauvegarde avant**, puis réimportez-la.
 - Dans l'APK, « Exporter » ouvre le partage Android (Drive, e-mail, Fichiers).
+
+## Aide à la réponse
+
+Chaque champ de saisie (audit, objectifs, segments, personas, mix, ventes, LTV, actions, budget, résultats, contingence)
+affiche, après les pistes de questions, un encadré « Pour une réponse claire » (structure conseillée de la réponse)
+et un « Exemple fictif ». Les exemples portent sur un produit imaginaire (gamme de savons naturels) : les chiffres
+sont inventés et illustrent seulement la forme attendue ; remplacez-les par vos données sourcées.
 
 ## Les six rubriques
 
