@@ -150,10 +150,30 @@ const INTROS = {
   mix4: "Le marketing mix traduit le positionnement en leviers concrets. Pour chaque P, répondez aux questions pertinentes ci-dessous ; votre réponse remplit la carte correspondante.",
   mix3: "Les 3P supplémentaires concernent les services : ce que vivent le client et les équipes à son contact. Répondez aux questions pertinentes ci-dessous ; votre réponse remplit la carte correspondante.",
   smart: "Un objectif SMART est Spécifique, Mesurable, Atteignable, Réaliste et Temporellement défini. Chaque champ correspond à un critère : les questions ci-dessous vous aident à le formuler. Un objectif quantitatif est chiffré ; un objectif qualitatif porte sur une perception.",
+  segment: "Un segment est un groupe de clients potentiels aux besoins ou comportements homogènes. Répondez aux questions ci-dessous pour le décrire.",
+  persona: "Un persona est un client type fictif, construit à partir de ce que vous savez du segment visé. Répondez aux questions ci-dessous.",
+  ventes: "Les ventes prévues alimentent la contribution marketing nette, le ROMI et le seuil de rentabilité. Il s'agit d'une hypothèse à justifier.",
+  ltv: "La valeur vie client (LTV) = marge moyenne par client et par an × durée moyenne de la relation (en années). Répondez aux questions ci-dessous pour estimer chaque terme.",
+  pv: "La part de voix est la part de vos dépenses de communication dans celles de l'ensemble du marché.",
   contingence: "Le plan de contingence prévoit à l'avance des scénarios alternatifs pour réagir rapidement si les hypothèses de marché s'écartent fortement des prévisions. Une fiche par scénario ; répondez aux questions ci-dessous.",
   swot: "Forces et faiblesses proviennent de l'analyse interne ; opportunités et menaces, du PESTEL, du marché et des 5 forces. Un élément par ligne, en vous aidant des questions et du rappel ci-dessous.",
 };
 const PISTES = {
+  ventes: {
+    ventes_prevues: ["Sur quelle base estime-t-on ces ventes (taille du segment visé × part atteignable, données d'un produit comparable, test de marché) ?",
+      "Quelle est la période retenue, et la saisonnalité éventuelle est-elle prise en compte ?",
+      "Quelle serait l'hypothèse prudente, et quelle serait l'hypothèse optimiste ?"],
+  },
+  ltv: {
+    marge: ["Quel est le panier ou la dépense annuelle moyenne d'un client, et quelle marge unitaire dégage-t-elle (prix − coût variable) ?",
+      "Combien d'achats par an le client effectue-t-il en moyenne ?"],
+    duree: ["Pendant combien d'années un client reste-t-il en moyenne fidèle (taux de rétention, taux d'attrition) ?",
+      "Des données internes ou sectorielles permettent-elles de justifier cette durée ?"],
+  },
+  pv: {
+    part_de_voix: ["Quelles sont vos dépenses de communication sur la période, et celles estimées de l'ensemble du marché ?",
+      "D'où provient l'estimation des dépenses des concurrents (veille, régies publicitaires, étude sectorielle) ?"],
+  },
   pestel: {
     politique: [
       "Quelles politiques publiques, aides ou incitations (innovation, export, PME) concernent mon secteur ?",
@@ -974,18 +994,31 @@ const ACTIONS = {
   'objectif-ajouter': () => objectifForm(null),
   'objectif-modifier': (d) => objectifForm(Number(d.id)),
   'segment-ajouter': () => formulaire('Nouveau segment', [
-    { name: 'nom', label: 'Nom', req: true }, { name: 'description', label: 'Description (besoins, comportements)' },
-    { name: 'critere', label: 'Critère de segmentation', type: 'select', options: CRITERES },
-    { name: 'taille', label: 'Taille estimée', type: 'number' }], {}, (f) => {
+    { name: 'nom', label: 'Nom', req: true,
+      pistes: ["Quel nom court identifie ce groupe de clients (par exemple « jeunes actifs urbains ») ?"] },
+    { name: 'description', label: 'Description (besoins, comportements)',
+      pistes: ["Quels besoins, attentes et freins ce groupe exprime-t-il vis-à-vis du produit ?",
+        "Comment achète-t-il (où, à quelle fréquence, selon quels critères) ?"] },
+    { name: 'critere', label: 'Critère de segmentation', type: 'select', options: CRITERES,
+      pistes: ["Quel critère distingue le mieux ce groupe des autres : géographique, démographique, socio-économique, comportemental ou psychographique ?"] },
+    { name: 'taille', label: 'Taille estimée', type: 'number',
+      pistes: ["Combien de clients potentiels ce segment compte-t-il, et d'où provient cette estimation ?",
+        "Ce segment est-il mesurable, accessible et assez rentable pour être ciblé ?"] }], {}, (f) => {
     db.segments.push({ id: nid(), plan_id: planId(), nom: f.nom, description: f.description, critere: f.critere, taille_estimee: num(f.taille) });
     sauver(); afficher();
-  }),
+  }, `<div class="doux">${esc(INTROS.segment)}</div>`),
   'persona-ajouter': () => formulaire('Nouveau persona', [
-    { name: 'nom', label: 'Nom du persona', req: true }, { name: 'description', label: 'Profil', type: 'textarea' },
-    { name: 'besoins', label: 'Besoins et motivations d\'achat', type: 'textarea' }], {}, (f) => {
+    { name: 'nom', label: 'Nom du persona', req: true,
+      pistes: ["Quel prénom ou intitulé évoque ce client type (par exemple « Samira, 32 ans, cadre ») ?"] },
+    { name: 'description', label: 'Profil', type: 'textarea',
+      pistes: ["Quels sont son âge, sa profession, son revenu approximatif, son lieu de vie et sa situation familiale ?",
+        "Quels médias et canaux utilise-t-il pour s'informer et acheter ?"] },
+    { name: 'besoins', label: 'Besoins et motivations d\'achat', type: 'textarea',
+      pistes: ["Quel problème cherche-t-il à résoudre, et quel bénéfice recherche-t-il en priorité ?",
+        "Quels sont ses freins à l'achat (prix, confiance, habitude) et ses critères de choix ?"] }], {}, (f) => {
     db.personas.push({ id: nid(), plan_id: planId(), nom: f.nom, description: f.description, besoins: f.besoins });
     sauver(); afficher();
-  }),
+  }, `<div class="doux">${esc(INTROS.persona)}</div>`),
   'action-ajouter': () => formulaire('Nouvelle action', [
     { name: 'phase', label: 'Phase', type: 'select', options: PHASES.map((x) => ({ v: x[0], t: x[0] })) },
     { name: 'canal', label: 'Canal', req: true }, { name: 'description', label: 'Description', req: true },

@@ -86,14 +86,17 @@ sinon le nombre de critères remplis (par exemple 2/4). Le bouton « ? » affich
    Coche : au moins un objectif, un segment, un ciblage choisi, positionnement et proposition de valeur renseignés.
    Les formulaires des objectifs SMART (un champ par critère) et de la stratégie (ciblage, positionnement) affichent
    eux aussi des pistes de questions avant chaque champ ; la réponse remplit la carte correspondante.
+   Il en va de même pour les formulaires des segments et des buyer personas.
 4. **Marketing mix** : 4P pour les biens, bouton pour passer aux 7P (Personnel, Processus, Preuve matérielle) pour les services.
    Coche lorsque tous les P du modèle choisi sont renseignés. Chaque P affiche ses pistes de questions avant la réponse.
 5. **Plan d'action et budget** : actions et calendrier (liste chronologique), budget par canal, compte d'exploitation
    prévisionnel (contribution marketing nette, ROMI prévisionnel), seuil de rentabilité.
    Coche : au moins une action, une ligne de budget et les ventes prévues renseignées.
+   Le champ des ventes prévues est accompagné de pistes pour justifier l'hypothèse.
 6. **Pilotage** : indicateurs (taux de conversion, CAC, contribution marketing nette, ROMI), LTV, part de voix,
    écarts prévu/réalisé par canal, résultats réels, plan de contingence.
    Coche : au moins un résultat, la LTV renseignée et un scénario de contingence.
+   La LTV et la part de voix disposent aussi de pistes de questions pour estimer chaque terme.
    Le formulaire du plan de contingence (risque, signal d'alerte, réponse prévue) est lui aussi guidé par des pistes de questions.
 
 La fonction « Générer » crée uniquement la structure : budget réparti par canal et calendrier en trois phases.
