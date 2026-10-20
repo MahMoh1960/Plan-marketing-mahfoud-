@@ -142,6 +142,123 @@ const GROUPES = {
   },
 };
 
+// Pistes de questions affichées avant chaque champ des formulaires de l'audit (guide de réflexion)
+const INTRO_AUDIT = "Les questions ci-dessous servent à guider votre réflexion : répondez, en une ou deux phrases, à celles qui sont pertinentes pour votre produit. Votre réponse remplit la carte correspondante.";
+const INTROS = {
+  pestel: INTRO_AUDIT, marche: INTRO_AUDIT, forces: INTRO_AUDIT, interne: INTRO_AUDIT, fcs: INTRO_AUDIT,
+  swot: "Forces et faiblesses proviennent de l'analyse interne ; opportunités et menaces, du PESTEL, du marché et des 5 forces. Un élément par ligne, en vous aidant des questions et du rappel ci-dessous.",
+};
+const PISTES = {
+  pestel: {
+    politique: [
+      "Quelles politiques publiques, aides ou incitations (innovation, export, PME) concernent mon secteur ?",
+      "Le contexte politique et réglementaire de mon marché cible est-il stable ?",
+      "Des accords commerciaux, droits de douane ou restrictions à l'importation ou à l'exportation s'appliquent-ils ?"],
+    economique: [
+      "Quelle est la conjoncture (croissance, inflation, taux de change, taux d'intérêt) et son effet sur le pouvoir d'achat de ma cible ?",
+      "Le coût des matières premières et de l'énergie est-il stable ?",
+      "Ma cible est-elle très sensible au prix ?"],
+    socioculturel: [
+      "Quelles évolutions de modes de vie, de valeurs ou de démographie touchent ma cible ?",
+      "Des habitudes, traditions ou tabous sont-ils liés à ce type de produit ?",
+      "Quelle place le local, le naturel ou l'éthique occupent-ils dans les choix d'achat ?"],
+    technologique: [
+      "Quelles innovations (production, produit, distribution) peuvent transformer le marché ?",
+      "Quel est le niveau d'équipement numérique et d'achat en ligne de ma cible ?",
+      "Des concurrents ou de nouveaux entrants disposent-ils d'une avance technologique ?"],
+    ecologique: [
+      "Quelles contraintes environnementales (emballage, déchets, énergie, eau) s'appliquent à mon produit ?",
+      "La demande de produits durables ou écoresponsables progresse-t-elle sur mon marché ?",
+      "L'impact environnemental de mon produit est-il à réduire ou à valoriser ?"],
+    legal: [
+      "Quelles normes, autorisations ou certifications sont requises pour commercialiser ce produit ?",
+      "Quelles règles encadrent l'étiquetage, la publicité, la protection des consommateurs et des données ?",
+      "Ma marque, mon design ou mon invention sont-ils protégés (propriété intellectuelle) ?"],
+  },
+  marche: {
+    taille: [
+      "Quelle est la taille du marché, en volume et en valeur, et son taux de croissance ?",
+      "Quelle part de ce marché mon produit peut-il raisonnablement viser ?",
+      "Quelle source fiable (statistiques officielles, étude sectorielle) étaye ces chiffres ?"],
+    tendances: [
+      "Quelles tendances de consommation (attentes, formats, canaux d'achat) se dessinent ?",
+      "Le marché est-il en introduction, en croissance, en maturité ou en déclin ?",
+      "Existe-t-il une saisonnalité de la demande ?"],
+    comportement: [
+      "Qui achète, qui décide et qui utilise le produit ?",
+      "Où, quand et à quelle fréquence l'achat a-t-il lieu, et selon quels critères (prix, qualité, marque, proximité) ?",
+      "Quels freins à l'achat les clients expriment-ils ?"],
+    concurrence: [
+      "Quels sont mes principaux concurrents directs et indirects ?",
+      "Quels sont leurs prix, leur positionnement, leurs forces et leurs parts de marché ?",
+      "Quels groupes stratégiques (ensembles de concurrents aux stratégies proches) se distinguent ?"],
+  },
+  forces: {
+    entrants: [
+      "Les barrières à l'entrée sont-elles élevées (capital, réglementation, marques, accès à la distribution) ?",
+      "De nouveaux acteurs, locaux ou étrangers, peuvent-ils arriver facilement ?",
+      "Comment les entrants récents ont-ils réussi ou échoué ?"],
+    substituts: [
+      "Quels produits ou services différents répondent au même besoin ?",
+      "Sont-ils moins chers ou plus pratiques que le mien ?",
+      "Le client peut-il en changer facilement ?"],
+    clients: [
+      "Les clients sont-ils concentrés ou dispersés ?",
+      "Peuvent-ils comparer les prix et changer facilement de fournisseur ?",
+      "Des distributeurs ou centrales d'achat imposent-ils leurs conditions ?"],
+    fournisseurs: [
+      "Les fournisseurs sont-ils peu nombreux ou indispensables ?",
+      "Changer de fournisseur est-il coûteux ou difficile ?",
+      "Puis-je diversifier ou sécuriser mes approvisionnements ?"],
+    rivalite: [
+      "Combien de concurrents de taille comparable sont présents ?",
+      "Le marché croît-il, ou se dispute-t-on des parts de marché stagnantes (guerre des prix) ?",
+      "Ma différenciation est-elle perceptible par les clients ?"],
+  },
+  interne: {
+    performances: [
+      "Comment ont évolué les ventes, la marge et la part de marché ces dernières années ?",
+      "Quels lancements précédents ont réussi ou échoué, et pourquoi ?",
+      "Que m'enseigne cette expérience pour ce lancement ?"],
+    portefeuille: [
+      "Quelle est la place de ce produit dans mon portefeuille d'activités (vedette, vache à lait, dilemme ou poids mort, selon la matrice BCG) ?",
+      "Quels produits financent ce lancement, et lesquels risquent d'être concurrencés par lui ?",
+      "Ce produit est-il cohérent avec mes autres activités ?"],
+    notoriete: [
+      "Quelle est la notoriété spontanée et assistée de ma marque auprès de la cible ?",
+      "Quelle image les clients en ont-ils (avis, recommandations, fidélité) ?",
+      "Le capital marque peut-il soutenir ce nouveau produit ?"],
+    capacites: [
+      "Mes capacités de production, de qualité, de délais et de logistique suffisent-elles ?",
+      "Mon équipe dispose-t-elle des compétences et des moyens financiers nécessaires ?",
+      "Quelles ressources manquent pour tenir ce plan ?"],
+  },
+  swot: {
+    forces: [
+      "Quels atouts internes (savoir-faire, marque, coûts, qualité, ressources) me distinguent des concurrents ?",
+      "Qu'est-ce que les clients disent que je fais mieux ?",
+      "Quels avantages sont durables et difficiles à copier ?"],
+    faiblesses: [
+      "Quelles ressources, compétences ou processus sont inférieurs à ceux des concurrents ?",
+      "Quelles critiques reviennent le plus souvent ?",
+      "Quelles contraintes de budget, de capacité ou de distribution limitent le lancement ?"],
+    opportunites: [
+      "Quelles évolutions externes (voir le PESTEL et les tendances) puis-je exploiter ?",
+      "Quels segments ou canaux sont peu servis par les concurrents ?",
+      "Quelles faiblesses des concurrents puis-je exploiter ?"],
+    menaces: [
+      "Quelles évolutions externes (concurrence, réglementation, conjoncture, substituts) peuvent nuire au lancement ?",
+      "Lesquelles sont les plus probables et les plus graves ?",
+      "Comment pourrais-je m'en protéger ?"],
+  },
+  fcs: {
+    fcs: [
+      "Sur ce marché, qu'est-ce qui fait gagner ou perdre (qualité, prix, distribution, marque, innovation, service) ?",
+      "Parmi ces facteurs, lesquels maîtrisons-nous déjà et lesquels faut-il acquérir ?",
+      "Le croisement du SWOT (forces × opportunités, faiblesses × menaces) les met-il en évidence ?"],
+  },
+};
+
 // ---------------------------------------------------------------- Données
 let db = charger();
 let onglet = 'r1';
@@ -248,22 +365,24 @@ async function copierTexte(t) {
 }
 
 // Boîte de dialogue de saisie. champs : {name,label,type,req,ph,options:[{v,t}]}
-function formulaire(titre, champs, vals, ok) {
+function formulaire(titre, champs, vals, ok, intro) {
   const d = document.createElement('dialog');
   const champ = (c) => {
     const val = vals[c.name] == null ? '' : vals[c.name];
     const ph = c.ph ? ` placeholder="${esc(c.ph)}"` : '';
+    const pistes = c.pistes && c.pistes.length
+      ? `<ul class="pistes">${c.pistes.map((q) => `<li>${esc(q)}</li>`).join('')}</ul>` : '';
     if (c.type === 'select') {
       return `<label>${esc(c.label)}<select name="${c.name}">${c.options.map((o) =>
         `<option value="${esc(o.v)}"${String(val) === String(o.v) ? ' selected' : ''}>${esc(o.t)}</option>`).join('')}</select></label>`;
     }
     if (c.type === 'textarea') {
-      return `<label>${esc(c.label)}<textarea name="${c.name}" rows="3"${ph}>${esc(val)}</textarea></label>`;
+      return `<label>${esc(c.label)}${pistes}<textarea name="${c.name}" rows="3"${ph}>${esc(val)}</textarea></label>`;
     }
     const n = c.type === 'number' ? ' step="any" min="0" inputmode="decimal"' : '';
     return `<label>${esc(c.label)}<input name="${c.name}" type="${c.type || 'text'}" value="${esc(val)}"${ph}${c.req ? ' required' : ''}${n}></label>`;
   };
-  d.innerHTML = `<form><h3>${esc(titre)}</h3>${champs.map(champ).join('')}
+  d.innerHTML = `<form><h3>${esc(titre)}</h3>${intro || ''}${champs.map(champ).join('')}
     <div class="rangee"><button type="button" class="sec" data-fermer>Annuler</button><button type="submit">Enregistrer</button></div></form>`;
   document.body.appendChild(d);
   const fermer = () => { if (d.close) { try { d.close(); } catch (e) { /* ignore */ } } d.remove(); };
@@ -713,6 +832,21 @@ function rubrique6(p) {
 const planId = () => Number((location.hash.match(/^#\/plan\/(\d+)/) || [])[1] || 0);
 const planCourant = () => db.plans.find((x) => x.id === planId());
 
+// Rappel, dans le formulaire SWOT, des réponses déjà saisies dans les autres analyses de l'audit
+function recapAudit(p) {
+  const court = (t) => { const s = String(t).replace(/\s+/g, ' ').trim(); return s.length > 140 ? s.slice(0, 140) + '…' : s; };
+  const items = [];
+  ['pestel', 'marche', 'forces', 'interne'].forEach((id) => {
+    const g = GROUPES[id], obj = g.obj(p);
+    g.champs.forEach((c) => {
+      if (txt(obj[c.name])) items.push(`<li><b>${esc(g.titre)} — ${esc(c.label)} :</b> ${esc(court(obj[c.name]))}</li>`);
+    });
+  });
+  return `<div class="recap"><div class="doux">Rappel de vos analyses, à transformer en forces, faiblesses, opportunités et menaces :</div>${items.length
+    ? `<ul>${items.join('')}</ul>`
+    : `<div class="doux">Aucune analyse renseignée pour l'instant : le PESTEL, le marché, les 5 forces et l'analyse interne alimentent le SWOT.</div>`}</div>`;
+}
+
 function objectifForm(id) {
   const o = id ? db.objectifs.find((x) => x.id === id) : { type: 'quantitatif' };
   formulaire(id ? "Modifier l'objectif" : 'Nouvel objectif SMART', [
@@ -759,10 +893,14 @@ const ACTIONS = {
     const p = planCourant(), g = GROUPES[d.g];
     if (!p || !g) return;
     const obj = g.obj(p);
-    formulaire(g.titre, g.champs, obj, (f) => {
+    const pistes = PISTES[d.g] || {};
+    const champs = g.champs.map((c) => Object.assign({}, c, { pistes: pistes[c.name] }));
+    const intro = (INTROS[d.g] ? `<div class="doux">${esc(INTROS[d.g])}</div>` : '')
+      + (d.g === 'swot' ? recapAudit(p) : '');
+    formulaire(g.titre, champs, obj, (f) => {
       g.champs.forEach((c) => { obj[c.name] = c.type === 'number' ? num(f[c.name]) : (f[c.name] || ''); });
       sauver(); afficher();
-    });
+    }, intro);
   },
   'mode-mix': () => {
     const p = planCourant();

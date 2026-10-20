@@ -22,9 +22,10 @@ marketing mix, plan d'action et budget, pilotage et contrôle.
 
 ## Mise à jour vers la version « six rubriques »
 
-Seuls trois fichiers changent : `app.js`, `style.css` et `sw.js`. `index.html` reste identique.
+Seuls les fichiers `app.js`, `style.css` et `sw.js` changent par rapport à la première version.
+`index.html` reste identique.
 
-1. Dans le dépôt, « Add file » > « Upload files », puis déposez les trois fichiers à la racine
+1. Dans le dépôt, « Add file » > « Upload files », puis déposez ces fichiers à la racine
    (ils remplacent les anciens du même nom) et validez avec « Commit changes ».
 2. Attendez une à deux minutes, puis rouvrez l'application. Si l'ancien affichage persiste,
    fermez complètement l'application (ou l'onglet) et rouvrez-la une fois de plus.
@@ -75,6 +76,9 @@ sinon le nombre de critères remplis (par exemple 2/4). Le bouton « ? » affich
    autres rubriques (constats de l'audit, objectifs phares, axe stratégique, enveloppe budgétaire). Bouton « Copier le résumé ».
    Coche lorsque les rubriques 2, 3 et 5 sont complètes.
 2. **Audit** : PESTEL, marché et concurrence, 5 forces de Porter, analyse interne, matrice SWOT, facteurs clés de succès.
+   Chaque formulaire affiche, avant chaque champ, des pistes de questions pour guider la réponse ; la réponse saisie
+   remplit la carte correspondante. Le formulaire SWOT rappelle en plus les réponses déjà saisies dans le PESTEL,
+   le marché, les 5 forces et l'analyse interne, pour les transformer en forces, faiblesses, opportunités et menaces.
    Coche lorsque le PESTEL, le marché/concurrence (ou les 5 forces), l'analyse interne et les quatre cases du SWOT sont renseignés.
 3. **Objectifs et stratégie** : objectifs SMART (quantitatifs ou qualitatifs, avec contrôle du caractère SMART complet),
    segments, stratégie de ciblage, positionnement et proposition de valeur, buyer personas.

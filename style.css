@@ -98,3 +98,9 @@ dialog::backdrop { background: rgba(0, 0, 0, .5); }
 .cellule { border: 1px solid var(--bord); border-radius: 8px; padding: 8px; font-size: .88rem; }
 .cellule ul { margin: 4px 0 0; padding-left: 18px; }
 textarea { resize: vertical; }
+.pistes { margin: 4px 0 6px; padding-left: 18px; font-size: .8rem; font-weight: 400; color: var(--doux); }
+.pistes li { margin-bottom: 2px; }
+.recap { border: 1px dashed var(--bord); border-radius: 8px; padding: 8px; margin-bottom: 10px; font-size: .85rem; max-height: 30vh; overflow-y: auto; }
+.recap ul { margin: 6px 0 0; padding-left: 18px; }
+.recap li { margin-bottom: 4px; }
+dialog > form > .doux { margin-bottom: 10px; }
