@@ -1,5 +1,5 @@
 // Service worker : fonctionnement hors ligne (cache des fichiers de l'application).
-const CACHE = 'plan-marketing-v1';
+const CACHE = 'plan-marketing-v2';
 const FICHIERS = ['./', 'index.html', 'style.css', 'app.js', 'manifest.json', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', (e) => {

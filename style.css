@@ -56,11 +56,12 @@ button.petit { padding: 6px 10px; font-size: .85rem; }
 .onglets button { white-space: nowrap; background: transparent; color: var(--doux); border: 1px solid var(--bord); }
 .onglets button.actif { background: var(--accent); color: var(--accent-t); border-color: var(--accent); }
 label { display: block; margin-bottom: 10px; font-size: .9rem; color: var(--doux); }
-input, select {
+input, select, textarea {
   width: 100%; margin-top: 4px; padding: 10px; font: inherit; color: var(--texte);
   background: var(--bg); border: 1px solid var(--bord); border-radius: 8px;
 }
 dialog {
+  max-height: 90vh; overflow-y: auto;
   width: min(92vw, 460px); border: 1px solid var(--bord); border-radius: 14px;
   background: var(--carte); color: var(--texte); padding: 16px;
 }
@@ -75,3 +76,25 @@ dialog::backdrop { background: rgba(0, 0, 0, .5); }
   opacity: 0; pointer-events: none; transition: opacity .2s; max-width: 90vw; text-align: center;
 }
 #toast.visible { opacity: 1; }
+
+/* Six rubriques */
+.etapes { display: flex; gap: 6px; overflow-x: auto; margin: 4px 0 12px; padding-bottom: 4px; }
+.etapes button {
+  flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 1px;
+  padding: 8px 2px; font-size: .68rem; background: transparent; color: var(--doux);
+  border: 1px solid var(--bord); border-radius: 10px;
+}
+.etapes button b { font-size: 1rem; }
+.etapes button small { color: var(--doux); }
+.etapes button.actif { color: var(--accent); border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.etapes button.fait b { color: var(--ok); }
+.sect { margin: 14px 0 8px; align-items: center; }
+.sect h3 { margin: 0; }
+.champ { margin-top: 8px; }
+.pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.aide { font-size: .9rem; color: var(--doux); border-style: dashed; }
+.badge.ok { color: var(--ok); border-color: var(--ok); }
+.swot { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.cellule { border: 1px solid var(--bord); border-radius: 8px; padding: 8px; font-size: .88rem; }
+.cellule ul { margin: 4px 0 0; padding-left: 18px; }
+textarea { resize: vertical; }
