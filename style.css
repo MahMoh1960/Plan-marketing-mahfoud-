@@ -78,10 +78,10 @@ dialog::backdrop { background: rgba(0, 0, 0, .5); }
 #toast.visible { opacity: 1; }
 
 /* Six rubriques */
-.etapes { display: flex; gap: 6px; overflow-x: auto; margin: 4px 0 12px; padding-bottom: 4px; }
+.etapes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 4px 0 12px; }
 .etapes button {
-  flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 1px;
-  padding: 8px 2px; font-size: .68rem; background: transparent; color: var(--doux);
+  min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 1px;
+  padding: 8px 4px; font-size: .8rem; font-weight: 500; background: transparent; color: var(--doux);
   border: 1px solid var(--bord); border-radius: 10px;
 }
 .etapes button b { font-size: 1rem; }
