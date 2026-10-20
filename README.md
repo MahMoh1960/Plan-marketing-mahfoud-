@@ -20,10 +20,11 @@ marketing mix, plan d'action et budget, pilotage et contrôle.
 | `build-apk.yml` | Procédure de compilation de l'APK (à coller dans GitHub Actions, voir plus bas) |
 | `README.md` | Ce guide |
 
-## Mise à jour vers la version « six rubriques »
+## Mise à jour vers la version « six rubriques » (avec pistes de questions)
 
 Seuls les fichiers `app.js`, `style.css` et `sw.js` changent par rapport à la première version.
-`index.html` reste identique.
+`index.html` reste identique. Si vous disposez déjà de la version précédente avec pistes pour l'audit,
+seul `app.js` est à remplacer.
 
 1. Dans le dépôt, « Add file » > « Upload files », puis déposez ces fichiers à la racine
    (ils remplacent les anciens du même nom) et validez avec « Commit changes ».
@@ -83,14 +84,17 @@ sinon le nombre de critères remplis (par exemple 2/4). Le bouton « ? » affich
 3. **Objectifs et stratégie** : objectifs SMART (quantitatifs ou qualitatifs, avec contrôle du caractère SMART complet),
    segments, stratégie de ciblage, positionnement et proposition de valeur, buyer personas.
    Coche : au moins un objectif, un segment, un ciblage choisi, positionnement et proposition de valeur renseignés.
+   Les formulaires des objectifs SMART (un champ par critère) et de la stratégie (ciblage, positionnement) affichent
+   eux aussi des pistes de questions avant chaque champ ; la réponse remplit la carte correspondante.
 4. **Marketing mix** : 4P pour les biens, bouton pour passer aux 7P (Personnel, Processus, Preuve matérielle) pour les services.
-   Coche lorsque tous les P du modèle choisi sont renseignés.
+   Coche lorsque tous les P du modèle choisi sont renseignés. Chaque P affiche ses pistes de questions avant la réponse.
 5. **Plan d'action et budget** : actions et calendrier (liste chronologique), budget par canal, compte d'exploitation
    prévisionnel (contribution marketing nette, ROMI prévisionnel), seuil de rentabilité.
    Coche : au moins une action, une ligne de budget et les ventes prévues renseignées.
 6. **Pilotage** : indicateurs (taux de conversion, CAC, contribution marketing nette, ROMI), LTV, part de voix,
    écarts prévu/réalisé par canal, résultats réels, plan de contingence.
    Coche : au moins un résultat, la LTV renseignée et un scénario de contingence.
+   Le formulaire du plan de contingence (risque, signal d'alerte, réponse prévue) est lui aussi guidé par des pistes de questions.
 
 La fonction « Générer » crée uniquement la structure : budget réparti par canal et calendrier en trois phases.
 Les rubriques (audit, stratégie, mix…) restent vides, à compléter : aucune donnée de marché n'est inventée.

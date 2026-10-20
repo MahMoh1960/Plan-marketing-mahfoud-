@@ -146,6 +146,11 @@ const GROUPES = {
 const INTRO_AUDIT = "Les questions ci-dessous servent à guider votre réflexion : répondez, en une ou deux phrases, à celles qui sont pertinentes pour votre produit. Votre réponse remplit la carte correspondante.";
 const INTROS = {
   pestel: INTRO_AUDIT, marche: INTRO_AUDIT, forces: INTRO_AUDIT, interne: INTRO_AUDIT, fcs: INTRO_AUDIT,
+  strategie: "Ciblage et positionnement relèvent de la démarche SCP : après la segmentation, on choisit les segments prioritaires, puis la place distinctive à occuper face aux concurrents. Répondez, en une ou deux phrases, aux questions ci-dessous ; votre réponse remplit la carte correspondante.",
+  mix4: "Le marketing mix traduit le positionnement en leviers concrets. Pour chaque P, répondez aux questions pertinentes ci-dessous ; votre réponse remplit la carte correspondante.",
+  mix3: "Les 3P supplémentaires concernent les services : ce que vivent le client et les équipes à son contact. Répondez aux questions pertinentes ci-dessous ; votre réponse remplit la carte correspondante.",
+  smart: "Un objectif SMART est Spécifique, Mesurable, Atteignable, Réaliste et Temporellement défini. Chaque champ correspond à un critère : les questions ci-dessous vous aident à le formuler. Un objectif quantitatif est chiffré ; un objectif qualitatif porte sur une perception.",
+  contingence: "Le plan de contingence prévoit à l'avance des scénarios alternatifs pour réagir rapidement si les hypothèses de marché s'écartent fortement des prévisions. Une fiche par scénario ; répondez aux questions ci-dessous.",
   swot: "Forces et faiblesses proviennent de l'analyse interne ; opportunités et menaces, du PESTEL, du marché et des 5 forces. Un élément par ligne, en vous aidant des questions et du rappel ci-dessous.",
 };
 const PISTES = {
@@ -250,6 +255,50 @@ const PISTES = {
       "Quelles évolutions externes (concurrence, réglementation, conjoncture, substituts) peuvent nuire au lancement ?",
       "Lesquelles sont les plus probables et les plus graves ?",
       "Comment pourrais-je m'en protéger ?"],
+  },
+  strategie: {
+    ciblage: [
+      "Mon marché est-il homogène (une offre unique suffit) ou composé de segments aux besoins différents ?",
+      "Ai-je les ressources pour servir plusieurs segments avec des offres adaptées (ciblage différencié), ou dois-je me concentrer sur un seul (niche) ?",
+      "Une offre sur mesure pour chaque client est-elle possible et rentable (ciblage personnalisé) ?"],
+    positionnement: [
+      "Quelle place distinctive ce produit doit-il occuper dans l'esprit des clients ciblés, face aux concurrents ?",
+      "Cette place est-elle crédible (le produit tient-il sa promesse) et durable (difficile à copier) ?",
+      "Pouvez-vous le résumer en une phrase : pour [cible], [produit] est [catégorie] qui [bénéfice principal], contrairement à [concurrent] ?"],
+    proposition_valeur: [
+      "Quel problème du client le produit résout-il, ou quel gain lui apporte-t-il ?",
+      "Que propose-t-il que les concurrents n'offrent pas, ou moins bien ?",
+      "Le client est-il prêt à payer pour cette différence, et sur quoi vous appuyez-vous (enquête, test, avis) ?"],
+  },
+  mix4: {
+    produit: [
+      "Quelles caractéristiques, quelle gamme (largeur et profondeur), quel design, quel packaging et quelle marque ?",
+      "Quelles garanties et quels services associés ?",
+      "Où en est le produit dans son cycle de vie, et comment le prolonger ?"],
+    prix: [
+      "Quelle politique de prix : écrémage, pénétration, alignement ou yield management, et pourquoi ?",
+      "Quelles remises, ristournes et conditions de paiement ?",
+      "Jusqu'où le client accepte-t-il de payer (élasticité-prix perçue), et le prix couvre-t-il le coût unitaire avec une marge suffisante ?"],
+    distribution: [
+      "Quels canaux (directs, courts, longs) et quelle stratégie (multicanale, omnicanale) ?",
+      "Quelle couverture du marché : intensive, sélective ou exclusive ?",
+      "Comment organiser le merchandising et la logistique commerciale ?"],
+    communication: [
+      "Stratégie pull (attirer le consommateur) ou push (pousser le produit via les distributeurs) ?",
+      "Quel mix média et hors-média : digital (référencement, réseaux sociaux, contenu, e-mailing), relations publiques, force de vente ?",
+      "Quels messages, pour quelles cibles, et comment mesurer leur effet ?"],
+  },
+  mix3: {
+    personnel: [
+      "Quelle formation et quelle posture attendre des équipes en contact avec le client ?",
+      "Comment recruter, motiver et évaluer ce personnel ?"],
+    processus: [
+      "Comment se déroule le parcours client, de la découverte au service après-vente ?",
+      "Où se situent les points de friction, les délais ou les erreurs ?",
+      "Quels processus simplifier ou automatiser ?"],
+    preuve: [
+      "Quel environnement physique ou quelle ergonomie digitale (lieu, site web, application) rassure le client ?",
+      "Quels éléments tangibles prouvent la qualité (témoignages, certifications, documents, tenues) ?"],
   },
   fcs: {
     fcs: [
@@ -373,14 +422,14 @@ function formulaire(titre, champs, vals, ok, intro) {
     const pistes = c.pistes && c.pistes.length
       ? `<ul class="pistes">${c.pistes.map((q) => `<li>${esc(q)}</li>`).join('')}</ul>` : '';
     if (c.type === 'select') {
-      return `<label>${esc(c.label)}<select name="${c.name}">${c.options.map((o) =>
+      return `<label>${esc(c.label)}${pistes}<select name="${c.name}">${c.options.map((o) =>
         `<option value="${esc(o.v)}"${String(val) === String(o.v) ? ' selected' : ''}>${esc(o.t)}</option>`).join('')}</select></label>`;
     }
     if (c.type === 'textarea') {
       return `<label>${esc(c.label)}${pistes}<textarea name="${c.name}" rows="3"${ph}>${esc(val)}</textarea></label>`;
     }
     const n = c.type === 'number' ? ' step="any" min="0" inputmode="decimal"' : '';
-    return `<label>${esc(c.label)}<input name="${c.name}" type="${c.type || 'text'}" value="${esc(val)}"${ph}${c.req ? ' required' : ''}${n}></label>`;
+    return `<label>${esc(c.label)}${pistes}<input name="${c.name}" type="${c.type || 'text'}" value="${esc(val)}"${ph}${c.req ? ' required' : ''}${n}></label>`;
   };
   d.innerHTML = `<form><h3>${esc(titre)}</h3>${intro || ''}${champs.map(champ).join('')}
     <div class="rangee"><button type="button" class="sec" data-fermer>Annuler</button><button type="submit">Enregistrer</button></div></form>`;
@@ -850,18 +899,28 @@ function recapAudit(p) {
 function objectifForm(id) {
   const o = id ? db.objectifs.find((x) => x.id === id) : { type: 'quantitatif' };
   formulaire(id ? "Modifier l'objectif" : 'Nouvel objectif SMART', [
-    { name: 'type', label: 'Type', type: 'select', options: TYPES_OBJ },
-    { name: 'intitule', label: 'Objectif (spécifique)', req: true },
-    { name: 'indicateur', label: 'Indicateur (mesurable) — ex. chiffre d\'affaires, part de marché, NPS' },
-    { name: 'valeur_cible', label: 'Valeur cible (mesurable)' },
-    { name: 'justification', label: 'Pourquoi est-il atteignable et réaliste ?', type: 'textarea' },
-    { name: 'echeance', label: 'Échéance (temporellement défini)', type: 'date' },
+    { name: 'type', label: 'Type', type: 'select', options: TYPES_OBJ,
+      pistes: ["Quantitatif (chiffré : ventes, chiffre d'affaires, part de marché, marge, rétention) ou qualitatif (perception : notoriété, image, satisfaction, NPS) ?"] },
+    { name: 'intitule', label: 'Objectif (spécifique)', req: true,
+      pistes: ["Que veut-on précisément atteindre, pour quel produit, quel segment et quel marché ?",
+        "L'objectif tient-il en une phrase claire, sans ambiguïté ?"] },
+    { name: 'indicateur', label: 'Indicateur (mesurable) — ex. chiffre d\'affaires, part de marché, NPS',
+      pistes: ["Quel indicateur le mesure (volume des ventes, chiffre d'affaires, part de marché, marge sur coûts variables, taux de rétention ; notoriété spontanée ou assistée, image, satisfaction, NPS) ?",
+        "Comment et par qui sera-t-il relevé ?"] },
+    { name: 'valeur_cible', label: 'Valeur cible (mesurable)',
+      pistes: ["Quel niveau chiffré vise-t-on, et à partir de quelle valeur de départ ?"] },
+    { name: 'justification', label: 'Pourquoi est-il atteignable et réaliste ?', type: 'textarea',
+      pistes: ["Les ressources, la capacité de production et le budget permettent-ils d'atteindre ce niveau ?",
+        "Sur quelle donnée repose-t-il (historique, étude de marché, concurrents), et est-il cohérent avec le diagnostic (SWOT) ?",
+        "Est-il ambitieux sans être irréaliste ?"] },
+    { name: 'echeance', label: 'Échéance (temporellement défini)', type: 'date',
+      pistes: ["À quelle date l'objectif doit-il être atteint, et avec quels jalons intermédiaires ?"] },
   ], o, (f) => {
     const v = { type: f.type, intitule: f.intitule, indicateur: f.indicateur, valeur_cible: f.valeur_cible,
       justification: f.justification, echeance: f.echeance || '' };
     if (id) Object.assign(o, v); else db.objectifs.push(Object.assign({ id: nid(), plan_id: planId() }, v));
     sauver(); afficher();
-  });
+  }, `<div class="doux">${esc(INTROS.smart)}</div>`);
 }
 
 const ACTIONS = {
@@ -955,12 +1014,18 @@ const ACTIONS = {
     });
   },
   'contingence-ajouter': () => formulaire('Scénario de contingence', [
-    { name: 'scenario', label: "Scénario (ex. riposte agressive d'un concurrent)", req: true },
-    { name: 'declencheur', label: 'Seuil de déclenchement', type: 'textarea' },
-    { name: 'action', label: 'Action corrective prévue', type: 'textarea' }], {}, (f) => {
+    { name: 'scenario', label: "Scénario (ex. riposte agressive d'un concurrent)", req: true,
+      pistes: ["Quelles hypothèses de marché pourraient s'écarter fortement des prévisions (conjoncture, riposte agressive d'un concurrent, rupture d'approvisionnement, retard de lancement) ?",
+        "Quel scénario est le plus probable, et lequel serait le plus grave ?"] },
+    { name: 'declencheur', label: 'Seuil de déclenchement', type: 'textarea',
+      pistes: ["Quel indicateur et quel seuil signalent ce scénario (par exemple des ventes inférieures à un certain pourcentage de la prévision pendant un mois) ?",
+        "Qui surveille cet indicateur, et à quel rythme ?"] },
+    { name: 'action', label: 'Action corrective prévue', type: 'textarea',
+      pistes: ["Quelle réponse rapide est prévue (ajuster le prix, réallouer le budget, changer de canal, renforcer la communication) ?",
+        "Qui décide, avec quelle réserve budgétaire et dans quel délai ?"] }], {}, (f) => {
     db.contingences.push({ id: nid(), plan_id: planId(), scenario: f.scenario, declencheur: f.declencheur, action: f.action });
     sauver(); afficher();
-  }),
+  }, `<div class="doux">${esc(INTROS.contingence)}</div>`),
   supprimer: (d) => {
     if (!confirm('Supprimer cet élément ?')) return;
     db[d.t] = db[d.t].filter((x) => x.id !== Number(d.id));
